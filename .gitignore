@@ -1,0 +1,103 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Large Model Weights & Checkpoints (Do not commit to git)
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+models/
+checkpoint-*/
+flan-base-tuned/
+flan-t5-base-finetuned/
+fine_tuned_flan_t5_large/
+distilled_flant5_largexl/
+distilled_model/
+student_model/
+XL_LARGE/
+new_finetuned-base/
+final_finetuned-base/
+
+# Logs & Monitoring
+logs/
+*.log
+runs/
+wandb/
+
+# Vector DB & Cache
+db/
+.chroma/
+chroma.sqlite3
+.cache/
+
+# Audio / Gradio outputs
+gradio_output/
+flagged/
+*.wav
+*.mp3
+
+# SSL Demo Certificates
+*.pem
+*.key
+*.crt
+
+# Test Caches & Reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# HuggingFace Caches & Local Tokens
+.huggingface/
+hf_*
+*token*
+*.env*
+.env.*
+
+# Antigravity Scratch & System Generated
+scratch/
+.system_generated/
+
