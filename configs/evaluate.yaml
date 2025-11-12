@@ -1,0 +1,16 @@
+# Evaluation configuration for test set benchmarking
+model:
+  name_or_path: "google/flan-t5-base"
+  tokenizer_name: "google/flan-t5-base"
+  max_input_length: 512
+  max_new_tokens: 128
+  num_beams: 2
+
+data:
+  test_path: "data/processed/test.csv"
+  max_samples: null  # Set to an integer to test a subset
+
+evaluation:
+  batch_size: 4
+  output_results_json: "results/evaluation_results.json"
+
