@@ -1,0 +1,17 @@
+# Model pruning and dynamic quantization configuration
+model:
+  name_or_path: "google/flan-t5-base"
+  tokenizer_name: "google/flan-t5-base"
+
+optimization:
+  prune: true
+  pruning_ratio: 0.20
+  pruning_method: "global"  # 'global' or 'local'
+  make_permanent: true
+
+  quantize: true
+  quantization_type: "dynamic_int8"
+
+output:
+  save_dir: "./models/flan_t5_optimized"
+
