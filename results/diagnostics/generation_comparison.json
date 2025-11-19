@@ -1,0 +1,290 @@
+{
+  "metadata": {
+    "audit_description": "Controlled generation audit across original, fine-tuned, and distilled FLAN-T5-Base models on 5 fixed clinical QA inputs.",
+    "num_test_samples": 5,
+    "device": "cuda",
+    "generation_modes_tested": [
+      "untied_greedy_num_beams_1_max_32",
+      "untied_beam_search_num_beams_2_max_128",
+      "corrupted_tied_weights_num_beams_2_max_128"
+    ]
+  },
+  "sample_inputs": [
+    {
+      "sample_index": 0,
+      "input_prompt": "Question: List the patient's chief complaints with comma separated value. Context: Good afternoon! How are you feeling today?\nI\u2019ve been experiencing sharp abdominal pain, especially on the right side.\nHow long have you had this pain?\nIt started about three days ago, and it\u2019s been getting worse. It\u2019s very sharp at times, and it\u2019s uncomfortable when I move.\nHave you noticed any other symptoms, such as nausea, vomiting, or fever?\nI haven\u2019t had nausea or vomiting, but I\u2019ve had a mild fever and some bloating.\nDo you have any history of gastrointestinal issues, such as ulcers or appendicitis?\nNo, I\u2019ve never had any gastrointestinal issues in the past. I don\u2019t think I\u2019ve had appendicitis either.\nAre you on any medications or have any allergies?\nI\u2019m not on any regular medications, and I don\u2019t have any known allergies.\nWhat\u2019s your diet like? Have you had any changes in your eating habits recently?\nI\u2019ve been eating a bit more fast food lately due to a busy work schedule.\nDoes anyone in your family have a history of gastrointestinal or abdominal issues?\nNo, no one in my family has had issues with their digestive system.",
+      "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+    },
+    {
+      "sample_index": 1,
+      "input_prompt": "Question: Summarize the patient's lifestyle and social activity. Context: Good afternoon! How can I assist you today?\nI\u2019ve been experiencing a sore throat and congestion for the past few days.\nHow long have you been feeling this way?\nIt started about three days ago, and I\u2019ve been getting worse each day.\nDo you have a fever, chills, or body aches?\nYes, I\u2019ve been feeling feverish and my muscles are sore.\nHave you had any issues like this before, such as frequent colds or sinus infections?\nI tend to get colds often, but this feels worse than usual.\nAre you taking any medications or treatments for these symptoms?\nI\u2019ve been using over-the-counter cold medicine, but it doesn\u2019t seem to help much.",
+      "reference": "No specific information available."
+    },
+    {
+      "sample_index": 2,
+      "input_prompt": "Question: Summarize the patient's have any known allergies, hypersensitivities, or adverse reactions to medications? Context: What is your name?\nMy name is David Parker.\nWhat brings you in today?\nI\u2019ve been having frequent chest palpitations.\nDo they occur during physical activity or at rest?\nMostly when I\u2019m resting.\nDo you consume a lot of caffeine or energy drinks?\nYes, I drink energy drinks daily.",
+      "reference": "No known allergies."
+    },
+    {
+      "sample_index": 3,
+      "input_prompt": "Question: Summarize the patient's family history. Context: Hi there! How can I help you today?\nI\u2019ve been feeling a lot of chest discomfort, and it sometimes feels like there\u2019s pressure in my chest.\nWhen did this start?\nIt began about a week ago, and I\u2019ve noticed it happening mostly after eating or when I\u2019m stressed.\nDo you have any shortness of breath, dizziness, or pain radiating to your arms?\nNo shortness of breath or pain radiating, but I do feel a little lightheaded when it happens.\nHave you had any history of heartburn or digestive issues?\nYes, I\u2019ve had heartburn in the past, and sometimes it feels like the discomfort is related to that.\nAre you on any medications?\nI take an over-the-counter antacid when the heartburn gets bad, but that\u2019s about it.\nDo you have any history of heart disease in your family?\nMy father had heart disease and had a heart attack about five years ago, but he\u2019s doing fine now.\nHave you noticed any patterns in your diet or lifestyle that might be triggering the discomfort?\nI\u2019ve been eating a lot of spicy food lately, and I tend to skip meals during busy days. I also drink a lot of coffee.",
+      "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+    },
+    {
+      "sample_index": 4,
+      "input_prompt": "Question: Summarize the patient's lifestyle and social activity. Context: What is your name?\nMy name is Michael Turner.\nWhat brings you in today?\nI\u2019ve been having a sharp pain in my right shoulder, especially when lifting things.\nWhen did this start?\nAbout a month ago after I helped a friend move furniture.\nDoes the pain worsen with certain movements?\nYes, lifting my arm above my head is very painful.\nHave you applied any treatments or taken medications?\nI\u2019ve tried ice packs and ibuprofen, but it hasn\u2019t improved much.\nAny history of shoulder injuries?\nNo, this is the first time I\u2019ve had shoulder pain.\nAny hospitalizations or surgeries in the past?\nNo.\nWhat\u2019s your lifestyle like?\nI\u2019m a warehouse worker, so I do a lot of heavy lifting.\nAny family history of joint or muscle problems?\nNo, none.\nAny known allergies?\nNo.\nHave you had any imaging tests like an X-ray or MRI?\nNo, not yet.",
+      "reference": "Physically active, works in a warehouse with heavy lifting."
+    }
+  ],
+  "evaluations": {
+    "google/flan-t5-base (original)": {
+      "untied_greedy_num_beams_1_max_32": [
+        {
+          "sample_index": 0,
+          "prediction": "abdominal pain",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "The patient is a senior citizen.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "Having frequent chest palpitations",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "Have you had heartburn in the past?",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "The patient is a warehouse worker.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "untied_beam_search_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "abdominal pain",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "The patient has a history of colds and sinus infections.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "a lot of caffeine",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "Have you had heartburn in the past?",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "The patient is a warehouse worker.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "corrupted_tied_weights_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "f\u00fchlt f\u00fchlt f\u00fchltByronByronByronByronByron client\u00e8le proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "schluss wieder wieder wieder wieder wieder wiederdeshalbdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "hommes client\u00e8le client\u00e8le baie baie baie baie baie baie baie universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "schlussdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "schluss G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6beh\u00f6rdebeh\u00f6rde baie baie baie baie baie universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire universitaire client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le client\u00e8le",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ]
+    },
+    "models/flan_t5_base_finetuned": {
+      "untied_greedy_num_beams_1_max_32": [
+        {
+          "sample_index": 0,
+          "prediction": "Sharp abdominal pain, uncomfortable moving, mild fever, mild bloating.",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "No data available in the context.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "No known allergies or reactions to medications.",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "Father, Heart disease, 5 years ago, No data available in the context.",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "Warehouse worker, heavy lifting.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "untied_beam_search_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "Sharp abdominal pain, uncomfortable moving, mild fever, mild bloating.",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "No data available in the context.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "No known allergies or reactions to medications.",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "Father, Heart disease, 5 years ago.",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "Heavy lifting, warehouse worker.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "corrupted_tied_weights_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "wendenwendenwendendeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "meistermeister440440440440440440440440440440440440440440440440440440440440440 client\u00e8le client\u00e8le proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect proiect",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "meistermeister440440440440440440440440440440440440440440440440440440440 f\u00fchlt f\u00fchlt weil weil weil weil weil weil weil baie baie baie baie baie baie baie baie baie baie baie universitaire universitaire weil weildeshalbdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "schluss gerne gerne gerne G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6 G\u00f6beh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdebeh\u00f6rdeschuheschuheschuheschuheschuheschuheschuheschuheschuheschuheschuheschuheschuheschuheschuhe",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "schluss wieder wieder wieder wieder wieder wiederdeshalbdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ]
+    },
+    "models/flan_t5_distilled_large_to_base": {
+      "untied_greedy_num_beams_1_max_32": [
+        {
+          "sample_index": 0,
+          "prediction": "sharp abdominal pain, especially on the right side.",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "The patient has been experiencing a sore throat and congestion for the past few days.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "David Parker has been having chest palpitations.",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "The patient has been experiencing chest discomfort. The patient has been experiencing chest discomfort. The patient has been eating spicy food and drinking coffee.",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "Michael Turner has a sharp shoulder pain. He is a warehouse worker. He has a history of shoulder injuries.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "untied_beam_search_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "sharp abdominal pain, especially on the right side",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "The patient has been experiencing a sore throat and congestion.",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "David Parker has frequent chest palpitations.",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "My father had heart disease and had a heart attack about five years ago.",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "Michael Turner is a warehouse worker. He does a lot of heavy lifting. He has a history of shoulder injuries.",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ],
+      "corrupted_tied_weights_num_beams_2_max_128": [
+        {
+          "sample_index": 0,
+          "prediction": "f\u00fchlt f\u00fchlt f\u00fchltdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalb",
+          "reference": "Sharp abdominal pain on the right side, mild fever, bloating."
+        },
+        {
+          "sample_index": 1,
+          "prediction": "schlussdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "No specific information available."
+        },
+        {
+          "sample_index": 2,
+          "prediction": "f\u00fchlt f\u00fchlt f\u00fchlt weil weil weil weil weil weil weil weil weil weil weil weil weil weil baie baie baie baie baie baie baie baie baie baie baie baie universitaire universitaire universitaire weil weil weil weildeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalb",
+          "reference": "No known allergies."
+        },
+        {
+          "sample_index": 3,
+          "prediction": "schlussdeshalbdeshalbdeshalb impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun impun",
+          "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine."
+        },
+        {
+          "sample_index": 4,
+          "prediction": "schlussdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalbdeshalb",
+          "reference": "Physically active, works in a warehouse with heavy lifting."
+        }
+      ]
+    }
+  }
+}

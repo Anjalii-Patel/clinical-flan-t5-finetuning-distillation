@@ -1,0 +1,179 @@
+{
+  "original_google_flan_t5_base": {
+    "path": "C:\\Users\\Dell\\.cache\\huggingface\\hub\\models--google--flan-t5-base\\snapshots\\7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+    "config": {
+      "model_type": "t5",
+      "vocab_size": 32128,
+      "d_model": 768,
+      "num_layers": 12,
+      "num_decoder_layers": 12,
+      "tie_word_embeddings": false,
+      "decoder_start_token_id": 0,
+      "eos_token_id": 1,
+      "pad_token_id": 0
+    },
+    "safetensors_inspection": {
+      "num_tensor_keys": 282,
+      "total_elements": 247577856,
+      "has_shared_weight": true,
+      "shared_weight_shape": [
+        32128,
+        768
+      ],
+      "shared_weight_dtype": "torch.float32",
+      "has_encoder_embed_tokens_weight": false,
+      "has_decoder_embed_tokens_weight": false,
+      "has_lm_head_weight": true,
+      "lm_head_weight_shape": [
+        32128,
+        768
+      ],
+      "lm_head_weight_dtype": "torch.float32",
+      "max_diff_shared_vs_lm_head": 125.92588806152344,
+      "weights_genuinely_tied_in_safetensors": false,
+      "has_nan_values": false,
+      "has_inf_values": false
+    },
+    "in_memory_architecture": {
+      "total_parameters": 247577856,
+      "trainable_parameters": 247577856,
+      "expected_flan_t5_base_parameters": 247577856,
+      "parameter_count_matches_expected": true,
+      "encoder_embed_tied_to_shared": true,
+      "decoder_embed_tied_to_shared": true,
+      "lm_head_tied_to_shared": false
+    },
+    "missing_and_unexpected_keys": {
+      "keys_in_model_state_dict_but_missing_in_safetensors": [
+        "decoder.embed_tokens.weight",
+        "encoder.embed_tokens.weight"
+      ],
+      "explanation_of_missing_keys": "encoder.embed_tokens.weight and decoder.embed_tokens.weight are aliases that point to shared.weight in memory. HuggingFace T5 saves shared.weight once and re-points encoder/decoder embeddings to it on load.",
+      "keys_in_safetensors_unexpected_by_model": []
+    },
+    "warning_analysis": {
+      "warning_message": "[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with tie_word_embeddings=False to silence this warning.",
+      "root_cause_of_warning": "In FLAN-T5 (T5 v1.1), lm_head.weight and shared.weight are untied with independent weights (max diff: 125.92). However, config.json had tie_word_embeddings=True (inherited from T5 v1.0 default). When tie_word_embeddings is True, older transformers (or manual tie_weights) overwrites lm_head.weight with shared.weight, destroying output projection and causing total collapse into repetitive multilingual tokens.",
+      "is_checkpoint_valid": true,
+      "required_config_fix": "Set tie_word_embeddings=False in config.json to explicitly reflect that FLAN-T5 has an untied LM head."
+    }
+  },
+  "models_flan_t5_base_finetuned": {
+    "path": "C:\\Users\\Dell\\PyCharmMiscProject\\Fine Tuning Flan-T5\\models\\flan_t5_base_finetuned",
+    "config": {
+      "model_type": "t5",
+      "vocab_size": 32128,
+      "d_model": 768,
+      "num_layers": 12,
+      "num_decoder_layers": 12,
+      "tie_word_embeddings": true,
+      "decoder_start_token_id": 0,
+      "eos_token_id": 1,
+      "pad_token_id": 0
+    },
+    "safetensors_inspection": {
+      "num_tensor_keys": 282,
+      "total_elements": 247577856,
+      "has_shared_weight": true,
+      "shared_weight_shape": [
+        32128,
+        768
+      ],
+      "shared_weight_dtype": "torch.float32",
+      "has_encoder_embed_tokens_weight": false,
+      "has_decoder_embed_tokens_weight": false,
+      "has_lm_head_weight": true,
+      "lm_head_weight_shape": [
+        32128,
+        768
+      ],
+      "lm_head_weight_dtype": "torch.float32",
+      "max_diff_shared_vs_lm_head": 125.9005126953125,
+      "weights_genuinely_tied_in_safetensors": false,
+      "has_nan_values": false,
+      "has_inf_values": false
+    },
+    "in_memory_architecture": {
+      "total_parameters": 247577856,
+      "trainable_parameters": 247577856,
+      "expected_flan_t5_base_parameters": 247577856,
+      "parameter_count_matches_expected": true,
+      "encoder_embed_tied_to_shared": true,
+      "decoder_embed_tied_to_shared": true,
+      "lm_head_tied_to_shared": false
+    },
+    "missing_and_unexpected_keys": {
+      "keys_in_model_state_dict_but_missing_in_safetensors": [
+        "decoder.embed_tokens.weight",
+        "encoder.embed_tokens.weight"
+      ],
+      "explanation_of_missing_keys": "encoder.embed_tokens.weight and decoder.embed_tokens.weight are aliases that point to shared.weight in memory. HuggingFace T5 saves shared.weight once and re-points encoder/decoder embeddings to it on load.",
+      "keys_in_safetensors_unexpected_by_model": []
+    },
+    "warning_analysis": {
+      "warning_message": "[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with tie_word_embeddings=False to silence this warning.",
+      "root_cause_of_warning": "In FLAN-T5 (T5 v1.1), lm_head.weight and shared.weight are untied with independent weights (max diff: 125.92). However, config.json had tie_word_embeddings=True (inherited from T5 v1.0 default). When tie_word_embeddings is True, older transformers (or manual tie_weights) overwrites lm_head.weight with shared.weight, destroying output projection and causing total collapse into repetitive multilingual tokens.",
+      "is_checkpoint_valid": true,
+      "required_config_fix": "Set tie_word_embeddings=False in config.json to explicitly reflect that FLAN-T5 has an untied LM head."
+    }
+  },
+  "models_flan_t5_distilled_large_to_base": {
+    "path": "C:\\Users\\Dell\\PyCharmMiscProject\\Fine Tuning Flan-T5\\models\\flan_t5_distilled_large_to_base",
+    "config": {
+      "model_type": "t5",
+      "vocab_size": 32128,
+      "d_model": 768,
+      "num_layers": 12,
+      "num_decoder_layers": 12,
+      "tie_word_embeddings": true,
+      "decoder_start_token_id": 0,
+      "eos_token_id": 1,
+      "pad_token_id": 0
+    },
+    "safetensors_inspection": {
+      "num_tensor_keys": 282,
+      "total_elements": 247577856,
+      "has_shared_weight": true,
+      "shared_weight_shape": [
+        32128,
+        768
+      ],
+      "shared_weight_dtype": "torch.float32",
+      "has_encoder_embed_tokens_weight": false,
+      "has_decoder_embed_tokens_weight": false,
+      "has_lm_head_weight": true,
+      "lm_head_weight_shape": [
+        32128,
+        768
+      ],
+      "lm_head_weight_dtype": "torch.float32",
+      "max_diff_shared_vs_lm_head": 125.91351318359375,
+      "weights_genuinely_tied_in_safetensors": false,
+      "has_nan_values": false,
+      "has_inf_values": false
+    },
+    "in_memory_architecture": {
+      "total_parameters": 247577856,
+      "trainable_parameters": 247577856,
+      "expected_flan_t5_base_parameters": 247577856,
+      "parameter_count_matches_expected": true,
+      "encoder_embed_tied_to_shared": true,
+      "decoder_embed_tied_to_shared": true,
+      "lm_head_tied_to_shared": false
+    },
+    "missing_and_unexpected_keys": {
+      "keys_in_model_state_dict_but_missing_in_safetensors": [
+        "decoder.embed_tokens.weight",
+        "encoder.embed_tokens.weight"
+      ],
+      "explanation_of_missing_keys": "encoder.embed_tokens.weight and decoder.embed_tokens.weight are aliases that point to shared.weight in memory. HuggingFace T5 saves shared.weight once and re-points encoder/decoder embeddings to it on load.",
+      "keys_in_safetensors_unexpected_by_model": []
+    },
+    "warning_analysis": {
+      "warning_message": "[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with tie_word_embeddings=False to silence this warning.",
+      "root_cause_of_warning": "In FLAN-T5 (T5 v1.1), lm_head.weight and shared.weight are untied with independent weights (max diff: 125.92). However, config.json had tie_word_embeddings=True (inherited from T5 v1.0 default). When tie_word_embeddings is True, older transformers (or manual tie_weights) overwrites lm_head.weight with shared.weight, destroying output projection and causing total collapse into repetitive multilingual tokens.",
+      "is_checkpoint_valid": true,
+      "required_config_fix": "Set tie_word_embeddings=False in config.json to explicitly reflect that FLAN-T5 has an untied LM head."
+    }
+  }
+}

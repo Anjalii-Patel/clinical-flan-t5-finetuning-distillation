@@ -1,0 +1,77 @@
+{
+  "metrics": {
+    "num_samples": 10,
+    "rouge1": 0.5729,
+    "rouge2": 0.3378,
+    "rougeL": 0.5511,
+    "rougeLsum": 0.5511,
+    "bleu": 0.1974,
+    "exact_match": 0.1,
+    "avg_pred_length": 8.5,
+    "avg_ref_length": 9.6,
+    "avg_latency_ms": 229.04,
+    "total_eval_time_sec": 2.29
+  },
+  "sample_results": [
+    {
+      "input": "Question: List the patient's chief complaints with comma separated value. Context: Good afternoon! How are you feeling today?\nI\u2019ve been experiencing sharp abdominal pain, especially on the right side.\nHow long have you had this pain?\nIt started about three days ago, and it\u2019s been getting worse. It\u2019s very sharp at times, and it\u2019s uncomfortable when I move.\nHave you noticed any other symptoms, such as nausea, vomiting, or fever?\nI haven\u2019t had nausea or vomiting, but I\u2019ve had a mild fever and some bloating.\nDo you have any history of gastrointestinal issues, such as ulcers or appendicitis?\nNo, I\u2019ve never had any gastrointestinal issues in the past. I don\u2019t think I\u2019ve had appendicitis either.\nAre you on any medications or have any allergies?\nI\u2019m not on any regular medications, and I don\u2019t have any known allergies.\nWhat\u2019s your diet like? Have you had any changes in your eating habits recently?\nI\u2019ve been eating a bit more fast food lately due to a busy work schedule.\nDoes anyone in your family have a history of gastrointestinal or abdominal issues?\nNo, no one in my family has had issues with their digestive system.",
+      "reference": "Sharp abdominal pain on the right side, mild fever, bloating.",
+      "prediction": "Sharp abdominal pain, uncomfortable moving, mild fever, mild bloating.",
+      "latency_ms": 219.82
+    },
+    {
+      "input": "Question: Summarize the patient's lifestyle and social activity. Context: Good afternoon! How can I assist you today?\nI\u2019ve been experiencing a sore throat and congestion for the past few days.\nHow long have you been feeling this way?\nIt started about three days ago, and I\u2019ve been getting worse each day.\nDo you have a fever, chills, or body aches?\nYes, I\u2019ve been feeling feverish and my muscles are sore.\nHave you had any issues like this before, such as frequent colds or sinus infections?\nI tend to get colds often, but this feels worse than usual.\nAre you taking any medications or treatments for these symptoms?\nI\u2019ve been using over-the-counter cold medicine, but it doesn\u2019t seem to help much.",
+      "reference": "No specific information available.",
+      "prediction": "No data available in the context.",
+      "latency_ms": 219.82
+    },
+    {
+      "input": "Question: Summarize the patient's have any known allergies, hypersensitivities, or adverse reactions to medications? Context: What is your name?\nMy name is David Parker.\nWhat brings you in today?\nI\u2019ve been having frequent chest palpitations.\nDo they occur during physical activity or at rest?\nMostly when I\u2019m resting.\nDo you consume a lot of caffeine or energy drinks?\nYes, I drink energy drinks daily.",
+      "reference": "No known allergies.",
+      "prediction": "No known allergies or reactions to medications.",
+      "latency_ms": 219.82
+    },
+    {
+      "input": "Question: Summarize the patient's family history. Context: Hi there! How can I help you today?\nI\u2019ve been feeling a lot of chest discomfort, and it sometimes feels like there\u2019s pressure in my chest.\nWhen did this start?\nIt began about a week ago, and I\u2019ve noticed it happening mostly after eating or when I\u2019m stressed.\nDo you have any shortness of breath, dizziness, or pain radiating to your arms?\nNo shortness of breath or pain radiating, but I do feel a little lightheaded when it happens.\nHave you had any history of heartburn or digestive issues?\nYes, I\u2019ve had heartburn in the past, and sometimes it feels like the discomfort is related to that.\nAre you on any medications?\nI take an over-the-counter antacid when the heartburn gets bad, but that\u2019s about it.\nDo you have any history of heart disease in your family?\nMy father had heart disease and had a heart attack about five years ago, but he\u2019s doing fine now.\nHave you noticed any patterns in your diet or lifestyle that might be triggering the discomfort?\nI\u2019ve been eating a lot of spicy food lately, and I tend to skip meals during busy days. I also drink a lot of coffee.",
+      "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine.",
+      "prediction": "Father, Heart disease, 5 years ago.",
+      "latency_ms": 219.82
+    },
+    {
+      "input": "Question: Summarize the patient's lifestyle and social activity. Context: What is your name?\nMy name is Michael Turner.\nWhat brings you in today?\nI\u2019ve been having a sharp pain in my right shoulder, especially when lifting things.\nWhen did this start?\nAbout a month ago after I helped a friend move furniture.\nDoes the pain worsen with certain movements?\nYes, lifting my arm above my head is very painful.\nHave you applied any treatments or taken medications?\nI\u2019ve tried ice packs and ibuprofen, but it hasn\u2019t improved much.\nAny history of shoulder injuries?\nNo, this is the first time I\u2019ve had shoulder pain.\nAny hospitalizations or surgeries in the past?\nNo.\nWhat\u2019s your lifestyle like?\nI\u2019m a warehouse worker, so I do a lot of heavy lifting.\nAny family history of joint or muscle problems?\nNo, none.\nAny known allergies?\nNo.\nHave you had any imaging tests like an X-ray or MRI?\nNo, not yet.",
+      "reference": "Physically active, works in a warehouse with heavy lifting.",
+      "prediction": "Heavy lifting, warehouse worker.",
+      "latency_ms": 111.38
+    },
+    {
+      "input": "Question: Summarize the patient's past medical history. Context: Good afternoon! What brings you in today?\nI\u2019ve been experiencing a lot of hair loss recently, and I\u2019m really concerned about it.\nHow long has this been happening?\nIt started about a month ago, and I\u2019ve noticed a significant amount of hair shedding every day.\nHave you had any changes in your diet, stress levels, or medications recently?\nI\u2019ve been under a lot of stress at work, and I haven\u2019t been eating very well. No changes in medications.\nDo you have any history of thyroid problems or other hormonal imbalances?\nI\u2019ve had thyroid problems in the past, and I\u2019ve been on medication for that. I\u2019m also concerned it could be hormonal.\nAre you on any medications right now?\nI take medication for my thyroid, but no other medications.\nHow would you describe your lifestyle and stress levels?\nI\u2019m often stressed, especially with work, and I don\u2019t get enough sleep or exercise.\nDoes anyone in your family have a history of hair loss or thyroid issues?\nYes, my mother has thyroid issues and has also experienced hair loss.",
+      "reference": "Past diagnosis: Clinical, Thyroid problems, Under control.",
+      "prediction": "Past diagnosis: Thyroid problems.",
+      "latency_ms": 111.38
+    },
+    {
+      "input": "Question: Summarize the patient's previous investigations of patient. Context: Hello! What brings you in today?\nI\u2019ve been dealing with irregular periods for the past couple of months. Sometimes they\u2019re late, and other times they\u2019re much heavier than usual.\nHow long has this been happening?\nIt started about two months ago. My periods are all over the place now.\nHave you noticed any other symptoms, such as changes in mood, skin, or weight gain?\nYes, I\u2019ve gained some weight, and I feel more emotional and anxious. My skin has also become more oily.\nHave you had irregular periods in the past?\nI\u2019ve always had regular periods, but this has been a new issue.\nDo you have any history of hormonal disorders, such as polycystic ovary syndrome (PCOS)?\nNo history of PCOS, but my mother had fibroids and went through early menopause.\nAre you on any medications right now?\nI\u2019m not on any medications.\nHow\u2019s your lifestyle? Do you eat a balanced diet or exercise regularly?\nI have a sedentary lifestyle, and my diet isn\u2019t great. I\u2019ve been eating a lot of fast food recently.",
+      "reference": "No previous investigations mentioned.",
+      "prediction": "No previous investigations mentioned.",
+      "latency_ms": 111.38
+    },
+    {
+      "input": "Question: List the patient's chief complaints with comma separated value. Context: Good morning! What brings you in today?\nI\u2019ve been having sharp pain in my lower abdomen during my periods.\nHow long has this been happening?\nFor the last year, but it\u2019s gotten worse recently.\nIs your menstrual cycle regular?\nYes, it\u2019s regular, but the pain is unbearable.\nHave you been diagnosed with ovarian cysts or endometriosis?\nNo, but I suspect it could be endometriosis.\nAre you on any birth control or pain medications?\nNo, I\u2019ve only been using over-the-counter painkillers.\nDoes anyone in your family have similar menstrual issues?\nMy aunt was diagnosed with endometriosis.",
+      "reference": "Sharp abdominal pain during periods, suspected endometriosis.",
+      "prediction": "Sharp pain in lower abdomen during periods, worsens recently.",
+      "latency_ms": 111.38
+    },
+    {
+      "input": "Question: Summarize the patient's current and past health issues. Context: Hello! What brings you in today?\nI\u2019ve been feeling a lot of pressure and pain in my lower back and hips.\nHow long have you been experiencing this pain?\nIt started about a month ago, and it\u2019s been progressively getting worse.\nHave you noticed any changes in your mobility or any numbness in your legs?\nI haven\u2019t had any numbness, but I do feel stiff and have trouble bending down.\nDo you have a history of back problems or hip issues?\nI\u2019ve had some minor back pain in the past, but nothing this severe.\nAre you taking any pain medications or treatments for this condition?\nI\u2019ve been using over-the-counter pain relievers, but they don\u2019t seem to help much.\nHow\u2019s your daily activity level? Do you do any heavy lifting or physical activity?\nI don\u2019t lift heavy things, but I sit a lot at my desk job and don\u2019t get much exercise.\nDoes anyone in your family have a history of joint or back problems?\nYes, my mother has arthritis in her hips and has had back problems in the past.",
+      "reference": "The patient has been experiencing pain and pressure in the lower back and hips, which started a month ago and has been getting worse. They have a history of minor back pain.",
+      "prediction": "The patient has been experiencing pressure and pain in the lower back and hips for the past month. They have a history of minor back pain but no severe ones.",
+      "latency_ms": 479.64
+    },
+    {
+      "input": "Question: Summarize the patient's lifestyle and social activity. Context: Good morning! What brings you in today?\nI\u2019ve been having sharp pain in my lower right abdomen for the past two days. It gets worse when I move or cough.\nHave you had any nausea, vomiting, or fever?\nYes, I\u2019ve been feeling nauseous, and I had a slight fever last night.\nHave you experienced this kind of pain before?\nNo, this is the first time it has happened.\nHave you had any changes in your bowel movements or appetite?\nI haven\u2019t been very hungry, and I haven\u2019t had a bowel movement in two days.\nDo you have any history of digestive issues, like ulcers or gallstones?\nNo, I\u2019ve never had any digestive problems before.\nIs there any family history of appendicitis or digestive diseases?\nMy younger brother had his appendix removed a few years ago.",
+      "reference": "No exercise or lifestyle factors reported.",
+      "prediction": "No data available in the context.",
+      "latency_ms": 479.64
+    }
+  ]
+}

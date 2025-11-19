@@ -1,0 +1,36 @@
+{
+  "split_method": "GroupShuffleSplit (grouped by consultation dialogue context)",
+  "random_seed": 42,
+  "ratios_target": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "total_samples": 1500,
+  "total_unique_dialogues": 150,
+  "train_split": {
+    "samples": 1050,
+    "dialogues": 105,
+    "percentage": 70.0,
+    "questions_per_dialogue": 10
+  },
+  "val_split": {
+    "samples": 220,
+    "dialogues": 22,
+    "percentage": 14.67,
+    "questions_per_dialogue": 10
+  },
+  "test_split": {
+    "samples": 230,
+    "dialogues": 23,
+    "percentage": 15.33,
+    "questions_per_dialogue": 10
+  },
+  "dialogue_leakage": {
+    "train_val_overlap": 0,
+    "train_test_overlap": 0,
+    "val_test_overlap": 0,
+    "leakage_detected": false
+  },
+  "reproducibility_verified": true
+}

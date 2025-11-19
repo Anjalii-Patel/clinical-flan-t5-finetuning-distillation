@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "benchmark_description": "Empirical validation of FLAN-T5 optimization (L1 Unstructured Pruning & PyTorch Dynamic INT8 Quantization)",
+    "model_checkpoint_source": "google/flan-t5-small (pre-trained Google base checkpoint, zero-shot on task)",
+    "evaluation_dataset": "data/processed/test.csv",
+    "evaluation_samples_count": 25,
+    "generation_config": {
+      "max_new_tokens": 32,
+      "num_beams": 2,
+      "early_stopping": true,
+      "do_sample": false
+    },
+    "timing_procedure": {
+      "scope": "model.generate() autoregressive token generation alone (excludes preprocessing and decoding)",
+      "warmup_procedure": "None (single-pass sequential batch evaluation)",
+      "batch_size": 2,
+      "total_batches": 13,
+      "repetitions": 1
+    },
+    "hardware_and_environment": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "processor_identifier": "Intel64 Family 6 Model 143 Stepping 8, GenuineIntel",
+      "cpu_physical_cores": 12,
+      "cpu_logical_cores": 24,
+      "torch_threads": 12,
+      "torch_interop_threads": 12,
+      "python_version": "3.14.6",
+      "torch_version": "2.12.1+cpu",
+      "transformers_version": "5.12.1"
+    }
+  },
+  "results": [
+    {
+      "variant": "Original FLAN-T5-small (FP32)",
+      "total_architectural_parameters": 76961152,
+      "named_parameters_counted": 76961152,
+      "in_memory_param_mb": 293.58,
+      "serialized_state_dict_mb": 293.66,
+      "sparsity_percent": 0.0,
+      "avg_generation_latency_ms": 115.96,
+      "metrics": {
+        "rouge1": 0.0438,
+        "rouge2": 0.0131,
+        "rougeL": 0.0420,
+        "bleu": 0.0059,
+        "exact_match": 0.0
+      },
+      "observations": "Zero-shot baseline on clinical extraction prompts."
+    },
+    {
+      "variant": "Pruned FLAN-T5-small (20% L1 Global)",
+      "total_architectural_parameters": 76961152,
+      "named_parameters_counted": 76961152,
+      "in_memory_param_mb": 293.58,
+      "serialized_state_dict_mb": 293.66,
+      "sparsity_percent": 20.0,
+      "avg_generation_latency_ms": 217.18,
+      "latency_change_percent": 87.29,
+      "metrics": {
+        "rouge1": 0.0000,
+        "rouge2": 0.0000,
+        "rougeL": 0.0000,
+        "bleu": 0.0000,
+        "exact_match": 0.0
+      },
+      "metric_retention_percent": {
+        "rouge1": 0.0,
+        "rougeL": 0.0
+      },
+      "observations": "20% global L1 magnitude pruning made permanent via prune.remove(). Dense memory layout is unchanged without sparse kernels. CPU latency increased by +87.3%. Generation collapsed completely without post-pruning recovery fine-tuning."
+    },
+    {
+      "variant": "Dynamic INT8 Quantized FLAN-T5-small",
+      "total_architectural_parameters": 76961152,
+      "named_parameters_counted": 16471424,
+      "parameter_counting_note": "16.47M reflects unquantized float parameters (embeddings, norms); quantized linear weights are stored in C++ _packed_params and omitted by model.parameters(). Total parameter count remains 76.96M.",
+      "in_memory_param_mb": 62.83,
+      "serialized_state_dict_mb": 120.71,
+      "storage_reduction_percent": {
+        "serialized_disk_reduction": 58.90,
+        "in_memory_float_param_reduction": 78.60
+      },
+      "sparsity_percent": 0.0,
+      "avg_generation_latency_ms": 193.64,
+      "latency_change_percent": 66.99,
+      "metrics": {
+        "rouge1": 0.0415,
+        "rouge2": 0.0024,
+        "rougeL": 0.0415,
+        "bleu": 0.0043,
+        "exact_match": 0.0
+      },
+      "metric_retention_percent": {
+        "rouge1": 94.75,
+        "rouge2": 18.32,
+        "rougeL": 98.81,
+        "bleu": 72.88
+      },
+      "observations": "INT8 dynamic quantization reduced serialized disk storage by 58.9% (293.66 MB to 120.71 MB) and retained 94.75% of baseline zero-shot ROUGE-1. However, CPU inference latency increased by +67.0% (115.96 ms to 193.64 ms) due to per-step dynamic dequantization overhead in PyTorch eager mode on this CPU."
+    }
+  ]
+}

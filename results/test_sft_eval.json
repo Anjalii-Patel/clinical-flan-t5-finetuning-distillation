@@ -1,0 +1,47 @@
+{
+  "metrics": {
+    "num_samples": 5,
+    "rouge1": 0.5186,
+    "rouge2": 0.2514,
+    "rougeL": 0.4879,
+    "rougeLsum": 0.4879,
+    "bleu": 0.0665,
+    "exact_match": 0.0,
+    "avg_pred_length": 6.4,
+    "avg_ref_length": 8.0,
+    "avg_latency_ms": 209.26,
+    "total_eval_time_sec": 1.05
+  },
+  "sample_results": [
+    {
+      "input": "Question: List the patient's chief complaints with comma separated value. Context: Good afternoon! How are you feeling today?\nI\u2019ve been experiencing sharp abdominal pain, especially on the right side.\nHow long have you had this pain?\nIt started about three days ago, and it\u2019s been getting worse. It\u2019s very sharp at times, and it\u2019s uncomfortable when I move.\nHave you noticed any other symptoms, such as nausea, vomiting, or fever?\nI haven\u2019t had nausea or vomiting, but I\u2019ve had a mild fever and some bloating.\nDo you have any history of gastrointestinal issues, such as ulcers or appendicitis?\nNo, I\u2019ve never had any gastrointestinal issues in the past. I don\u2019t think I\u2019ve had appendicitis either.\nAre you on any medications or have any allergies?\nI\u2019m not on any regular medications, and I don\u2019t have any known allergies.\nWhat\u2019s your diet like? Have you had any changes in your eating habits recently?\nI\u2019ve been eating a bit more fast food lately due to a busy work schedule.\nDoes anyone in your family have a history of gastrointestinal or abdominal issues?\nNo, no one in my family has had issues with their digestive system.",
+      "reference": "Sharp abdominal pain on the right side, mild fever, bloating.",
+      "prediction": "Sharp abdominal pain, uncomfortable moving, mild fever, mild bloating.",
+      "latency_ms": 216.24
+    },
+    {
+      "input": "Question: Summarize the patient's lifestyle and social activity. Context: Good afternoon! How can I assist you today?\nI\u2019ve been experiencing a sore throat and congestion for the past few days.\nHow long have you been feeling this way?\nIt started about three days ago, and I\u2019ve been getting worse each day.\nDo you have a fever, chills, or body aches?\nYes, I\u2019ve been feeling feverish and my muscles are sore.\nHave you had any issues like this before, such as frequent colds or sinus infections?\nI tend to get colds often, but this feels worse than usual.\nAre you taking any medications or treatments for these symptoms?\nI\u2019ve been using over-the-counter cold medicine, but it doesn\u2019t seem to help much.",
+      "reference": "No specific information available.",
+      "prediction": "No data available in the context.",
+      "latency_ms": 216.24
+    },
+    {
+      "input": "Question: Summarize the patient's have any known allergies, hypersensitivities, or adverse reactions to medications? Context: What is your name?\nMy name is David Parker.\nWhat brings you in today?\nI\u2019ve been having frequent chest palpitations.\nDo they occur during physical activity or at rest?\nMostly when I\u2019m resting.\nDo you consume a lot of caffeine or energy drinks?\nYes, I drink energy drinks daily.",
+      "reference": "No known allergies.",
+      "prediction": "No known allergies or reactions to medications.",
+      "latency_ms": 216.24
+    },
+    {
+      "input": "Question: Summarize the patient's family history. Context: Hi there! How can I help you today?\nI\u2019ve been feeling a lot of chest discomfort, and it sometimes feels like there\u2019s pressure in my chest.\nWhen did this start?\nIt began about a week ago, and I\u2019ve noticed it happening mostly after eating or when I\u2019m stressed.\nDo you have any shortness of breath, dizziness, or pain radiating to your arms?\nNo shortness of breath or pain radiating, but I do feel a little lightheaded when it happens.\nHave you had any history of heartburn or digestive issues?\nYes, I\u2019ve had heartburn in the past, and sometimes it feels like the discomfort is related to that.\nAre you on any medications?\nI take an over-the-counter antacid when the heartburn gets bad, but that\u2019s about it.\nDo you have any history of heart disease in your family?\nMy father had heart disease and had a heart attack about five years ago, but he\u2019s doing fine now.\nHave you noticed any patterns in your diet or lifestyle that might be triggering the discomfort?\nI\u2019ve been eating a lot of spicy food lately, and I tend to skip meals during busy days. I also drink a lot of coffee.",
+      "reference": "Father had heart disease, had a heart attack five years ago, currently doing fine.",
+      "prediction": "Father, Heart disease, 5 years ago.",
+      "latency_ms": 216.24
+    },
+    {
+      "input": "Question: Summarize the patient's lifestyle and social activity. Context: What is your name?\nMy name is Michael Turner.\nWhat brings you in today?\nI\u2019ve been having a sharp pain in my right shoulder, especially when lifting things.\nWhen did this start?\nAbout a month ago after I helped a friend move furniture.\nDoes the pain worsen with certain movements?\nYes, lifting my arm above my head is very painful.\nHave you applied any treatments or taken medications?\nI\u2019ve tried ice packs and ibuprofen, but it hasn\u2019t improved much.\nAny history of shoulder injuries?\nNo, this is the first time I\u2019ve had shoulder pain.\nAny hospitalizations or surgeries in the past?\nNo.\nWhat\u2019s your lifestyle like?\nI\u2019m a warehouse worker, so I do a lot of heavy lifting.\nAny family history of joint or muscle problems?\nNo, none.\nAny known allergies?\nNo.\nHave you had any imaging tests like an X-ray or MRI?\nNo, not yet.",
+      "reference": "Physically active, works in a warehouse with heavy lifting.",
+      "prediction": "Heavy lifting, warehouse worker.",
+      "latency_ms": 175.31
+    }
+  ]
+}
