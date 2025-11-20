@@ -205,16 +205,19 @@ sequenceDiagram
     participant Batch as Mini-Batch Data
     participant Teacher as FLAN-T5-XL / Large (Frozen)
     participant Student as FLAN-T5-Base (Trainable)
-    participant Loss as DistillationLoss (KL + CE)
-    participant Opt as AdamW Optimizer
+    participant Loss as Distillation Loss (KL + CE)
+    participant Optimizer as AdamW Optimizer
 
-    Batch->>Teacher: Input IDs, Mask (torch.no_grad)
-    Batch->>Student: Input IDs, Mask, Labels
-    Teacher-->>Loss: Soft Logits (z_T)
-    Student-->>Loss: Soft Logits (z_S) + Cross-Entropy Logits
-    Note over Loss: KL_div(log_softmax(z_S/T), softmax(z_T/T)) * T^2<br/>+ CrossEntropy(z_S, Labels)
-    Loss-->>Student: Backpropagate Gradients
-    Opt->>Student: Update Student Parameters
+    Batch->>Teacher: Input IDs and Attention Mask
+    Note over Teacher: Forward pass under torch.no_grad()
+    Batch->>Student: Input IDs, Attention Mask and Labels
+    Teacher-->>Loss: Teacher Logits z_T
+    Student-->>Loss: Student Logits z_S
+    Note over Loss: Compute temperature-scaled KL divergence
+    Note over Loss: Add Cross-Entropy loss using ground-truth labels
+    Note over Loss: Scale KL loss by temperature squared tau squared
+    Loss-->>Student: Backpropagate Combined Loss
+    Optimizer->>Student: Update Student Parameters
 ```
 
 ### 8.2 Architectural Breakthrough: Online vs. Offline Distillation
